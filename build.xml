@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!--
+       Erstes Beispiel eines ant build files.
+       $Date: 2014/08/14 $
+       $Revision: #2 $
+  -->
+<project name="Simple" basedir="." default="all">
+
+          <target name="compile" description="Compilation target">
+    	    <echo message = "Compiling the sources."/>
+    	    <!-- call javac and store the class-files in the build directory -->
+            <javac srcdir="."  />
+          </target>
+	
+          <target name="run" depends="compile"> 
+            <echo message = "Ant running a Java main!"/>
+            <java fork="true" classname="Main"/>
+          </target>
+          <target name="all" depends="compile, run"> 
+            <echo message = "compile the sources and run the application!"/>
+          </target>	
+	
+	      <target name="clean">
+	      	<echo message= "Cleaning up!" />
+	      	<delete file="One.class" />
+	  	    <delete file="Two.class" />
+	  	    <delete file="Main.class" />
+	      </target>
+</project>

@@ -1,8 +1,6 @@
 <?xml version="1.0" ?>
 <!--
-       Erstes Beispiel eines ant build files.
-       $Date: 2014/08/14 $
-       $Revision: #2 $
+       Beispiel eines ant build files.
   -->
 <project name="Simple" basedir="." default="all">
 

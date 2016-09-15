@@ -4,6 +4,14 @@
   -->
 <project name="Simple" basedir="." default="all">
 
+          <!-- Verzeichnis für die HTML-Dokumentation -->
+          <property name="doc.dir" location="html" />
+
+          <!-- Verzeichniss anlegen, falls nicht vorhanden -->
+      <target name ="makedir">
+          <echo message= "Create directories, if necessary!" />
+          <mkdir dir="${doc.dir}" />
+
           <target name="compile" description="Compilation target">
     	    <echo message = "Compiling the sources."/>
     	    <!-- call javac and store the class-files in the build directory -->
@@ -14,6 +22,7 @@
             <echo message = "Ant running a Java main!"/>
             <java fork="true" classname="Main"/>
           </target>
+
           <target name="all" depends="compile, run"> 
             <echo message = "compile the sources and run the application!"/>
           </target>	

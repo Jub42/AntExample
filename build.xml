@@ -9,9 +9,10 @@
           <property name="doc.dir" location="html" />
 
           <!-- Verzeichniss anlegen, falls nicht vorhanden -->
-      <target name ="makedir">
+          <target name ="makedir">
           <echo message= "Create directories, if necessary!" />
           <mkdir dir="${doc.dir}" />
+          </target>
 
           <target name="compile" description="Compilation target">
             <echo message = "Compiling the sources."/>

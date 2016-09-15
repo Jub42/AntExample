@@ -23,7 +23,7 @@
             <java fork="true" classname="Main"/>
           </target>
 
-          <target name="all" depends="compile, run"> 
+          <target name="all" depends="compile, makedir"> 
             <echo message = "compile the sources and run the application!"/>
           </target>	
 	

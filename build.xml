@@ -1,10 +1,11 @@
-<?xml version="1.0" ?>
+﻿<?xml version="1.0" ?>
 <!--
        Beispiel eines ant build files.
   -->
 <project name="Simple" basedir="." default="all">
-
-          <!-- Verzeichnis f�r die HTML-Dokumentation -->
+
+
+          <!-- Verzeichnis für die HTML-Dokumentation -->
           <property name="doc.dir" location="html" />
 
           <!-- Verzeichniss anlegen, falls nicht vorhanden -->
@@ -13,24 +14,26 @@
           <mkdir dir="${doc.dir}" />
 
           <target name="compile" description="Compilation target">
-    	    <echo message = "Compiling the sources."/>
-    	    <!-- call javac and store the class-files in the build directory -->
+            <echo message = "Compiling the sources."/>
+            <!-- call javac and store the class-files in the build directory -->
             <javac srcdir="."  />
           </target>
-	
+    
           <target name="run" depends="compile"> 
             <echo message = "Ant running a Java main!"/>
             <java fork="true" classname="Main"/>
-          </target>
+          </target>
+
 
           <target name="all" depends="compile, makedir"> 
             <echo message = "compile the sources and run the application!"/>
-          </target>	
-	
-	      <target name="clean">
-	      	<echo message= "Cleaning up!" />
-	      	<delete file="One.class" />
-	  	    <delete file="Two.class" />
-	  	    <delete file="Main.class" />
-	      </target>
-</project>
+          </target> 
+    
+          <target name="clean">
+            <echo message= "Cleaning up!" />
+            <delete file="One.class" />
+            <delete file="Two.class" />
+            <delete file="Main.class" />
+          </target>
+</project>
+

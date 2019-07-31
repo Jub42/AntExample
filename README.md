@@ -6,7 +6,10 @@ Das GitHub-Repo enthält drei Branches:
 - javadoc
 - doxygen
 - externals
+- runjar
 
 Die beiden branches javadoc und doxygen enthalten die gleichen Klassen, jeweils mit JavaDoc- und mit Doxygen-Kommentaren (im Qt-Style) versehen. Damit kann demonstriert werden, wie man in Jenkins verschiedene Branches eines GitHub-Projekts auswählt, und darüber hinaus, wie man ein Target für die Dokumentation anlegt.
 
 Im branch externals liegt ein Ant-Projekt, das externe jar-Bibliotheken verwendet. Als Beispiel verwenden Logging mit log4j2.
+
+Im branch runjar wird mit dem target "jar" ein jar-File erstellt, der im target "run" ausgeführt wird.

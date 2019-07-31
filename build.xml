@@ -48,5 +48,6 @@
             <delete file="One.class" />
             <delete file="Two.class" />
             <delete file="Main.class" />
+	    <delete dir="doc" />
           </target>
 </project>

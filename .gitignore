@@ -1,8 +1,21 @@
-*.class
-*.jar
-*.war
-*ear
+# Backup-Files unserer ASCII-Editoren
+*~
+*.bak
 
-bin/
-lib/
-docs/
+# class-files
+**/*.class
+
+# Verzeichnisse mit Binaries
+[Bb]in/
+
+# Log-Ausgaben
+logs/
+
+# HTML-Verzeichnis mit Dokumentation
+[Hh]tml/
+[Dd]oc
+
+# Eclipse Projektinfos
+.classpath
+.project
+.settings/

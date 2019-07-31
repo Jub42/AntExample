@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" ?>
-<project name="Simple" basedir="." default="all">
+<project name="Simple with Doxygen" basedir="." default="all">
 
           <!-- Warnung bei javac ausblenden -->
           <!-- Quelle: -->
@@ -12,7 +12,7 @@
           <!-- Verzeichniss anlegen, falls nicht vorhanden -->
           <target name ="makedir">
             <echo message= "Create directories, if necessary!" />
-          <mkdir dir="${doc.dir}" />
+            <mkdir dir="${doc.dir}" />
           </target>
 
           <target name="compile" description="Compilation target">
@@ -25,16 +25,27 @@
             <echo message = "Ant running a Java main!"/>
             <java fork="true" classname="Main"/>
           </target>
-
-          <target name="all" depends="compile, makedir"> 
-            <echo message = "compile the sources and run the application!"/>
-          </target> 
     
+	      <target name="docs" depends="makedir">
+	      	<echo message = "calling doxygen"/>
+	      	<echo message = "Output from doxgen can be found in doxygenout.txt"/>
+	      	<exec dir="." executable="doxygen" 
+	      		          output="doxygenOut.txt" 
+	      		          failonerror="true"
+	      		          failifexecutionfails="true">
+	      	</exec>
+	      </target>
+
+          <target name="all" depends="docs, run, compile, makedir"> 
+            <echo message = "compile the sources and run the application"/>
+          </target>
+	
           <target name="clean">
             <echo message= "Cleaning up!" />
             <delete file="One.class" />
             <delete file="Two.class" />
             <delete file="Main.class" />
+          	<delete file="doxygenOut.txt" />
           </target>
 </project>
 

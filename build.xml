@@ -1,59 +1,55 @@
 <?xml version="1.0" ?>
-<project name="Simple with external Logging" basedir="." default="all">
+<project name="Simple with a jar" basedir="." default="all">
           <!-- Warnung bei javac ausblenden -->
           <!-- Quelle: -->
           <!-- https://stackoverflow.com/questions/5103384/ant-warning-includeantruntime-was-not-set -->	
           <property name="build.sysclasspath" value="last"/>
 	
-		  <!-- Das folgende Verzeichnis wird mit clean nicht gelöscht!
-	           Dort stehen die external jars und unsere Quellen ... -->
-	      <property name="src.dir" location="${basedir}" />     
-	      <property name="lib.dir" location="lib" />
+		     <!-- Das folgende Verzeichnis wird mit clean nicht gelöscht!
+	              Dort stehen die external jars und unsere Quellen ... -->
+	         <property name="src.dir" location="${basedir}" />     
+		     <property name="dist.dir" location="dist" />
 	
-	      <!-- Die folgenden Verzeichnisse können rekonstruiert werden,
-	           und werden mit clean gelöscht.  -->
-	      <property name="bin.dir" location="bin" />
+	         <!-- Die folgenden Verzeichnisse können rekonstruiert werden,
+	              und werden mit clean gelöscht.  -->
+	         <property name="bin.dir" location="bin" />
 	      
-	      <!-- Name der Anwendungsklasse -->
-	      <property name="main-Class" value="Main" />
+	         <!-- Name der Anwendungsklasse und der jar-Datei -->
+	         <property name="main-Class" value="Main" />
+	         <property name="executable" value = "${dist.dir}/Main.jar" />
+			      
+	        <!-- Verzeichnisse erstellen -->
+	        <target name="makedir">
+	  	       <echo message= "Create the directories!" />
+	           <mkdir dir="${bin.dir}" />
+			    <mkdir dir="${dist.dir}" />
+	        </target>
 	  
-	      <!-- Dafür sorgen, dass die jars für log4j2 (und was später alles noch so in lib liegt)
-	           im classpath liegt.
-	           Benötigen wir bei compile und bei run. -->
-	      <path id="class.path">
-            <fileset dir="${lib.dir}">
-              <include name="**/*.jar" />
-            </fileset>
-          </path>
-      
-	      <!-- Verzeichnisse erstellen -->
-	      <target name="makedir">
-	  	     <echo message= "Create the directories!" />
-	         <mkdir dir="${bin.dir}" />
-	      </target>
-	  
-          <target name="compile" depends="makedir">
+           <target name="compile" depends="makedir">
             <!-- Wir kopieren die class-files in das bin-Verzeichnis,
                  und fügen den classpath hinzu, damit die
                  externen jars für log4j2 gefunden werden. -->
     	    <echo message = "Compiling the sources."/>
-            <javac srcdir="." destdir="${bin.dir}" classpathref="class.path" />
-      	    <!-- Die Konfigurationsdatei für Log4j zu den ausführbaren Klassen kopieren -->
-      	    <copy todir="${bin.dir}" flatten="true" file="${src.dir}/log4j2.xml">  
-      	    </copy>
-          </target>
+           <javac srcdir="." destdir="${bin.dir}"/>
+           </target>
 	
-          <target name="run" depends="compile"> 
-            <echo message = "Ant running a Java main with externals!"/>
-            <java dir="${bin.dir}" fork="true" classname="Main">
-              <!-- Ausführen in bin, und die externen libs müssen 
-                   gefunden werden. -->
-              <classpath>
-                 <path location="${bin.dir}"/>
-                 <path refid="class.path"/>               
-              </classpath>
-            </java>
-          </target>
+	       <tstamp />
+		   
+	       <target name="jar" depends="compile">
+		       <echo message="Create jar-file!" />
+			   <jar destfile="${executable}" basedir="${bin.dir}">
+			     <!-- Manifest erzeugen -->
+			     <manifest>
+			        <attribute name="Main-Class" value="${main-Class}" />
+				    <attribute name="Build-Date" value="${TODAY}" />
+			     </manifest>
+		       </jar>
+		   </target>
+		   
+          <target name="run" depends="jar"> 
+            <echo message = "Ant running a jar!"/>
+            <java jar="${executable}" dir="${dist.dir}" fork="true" />
+            </target>
           <target name="all" depends="run, compile, makedir"> 
             <echo message = "compile the sources and run the application!"/>
           </target>	
@@ -64,5 +60,6 @@
 	  	    <delete file="Two.class" />
 	  	    <delete file="Main.class" />
 	  	    <delete dir="${bin.dir}" />
+			<delete file="${executable}" />
 	      </target>
 </project>

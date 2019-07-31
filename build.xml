@@ -1,48 +1,52 @@
 ﻿<?xml version="1.0" ?>
 <project name="Simple with Javadoc" basedir="." default="all">
 
+  	      <!-- Warnung bei javac ausblenden -->
+  	      <!-- Quelle: -->
+	      <!-- https://stackoverflow.com/questions/5103384/ant-warning-includeantruntime-was-not-set -->	
+	      <property name="build.sysclasspath" value="last"/>
+	
           <!-- Verzeichnis für die HTML-Dokumentation -->
           <property name="doc.dir" location="doc" />
 
-          <!-- Verzeichniss anlegen, falls nicht vorhanden -->
-      <target name ="makedir">
-          <echo message= "Create directories, if necessary!" />
-          <mkdir dir="${doc.dir}" />
+          <!-- Verzeichnis anlegen, falls nicht vorhanden -->
+          <target name ="makedir">
+            <echo message= "Create directories, if necessary!" />
+            <mkdir dir="${doc.dir}" />
           </target>
 
-      <!-- Den Compiler aufrufen und Bytecode erzeugen -->
+          <!-- Den Compiler aufrufen und Bytecode erzeugen -->
           <target name="compile" description="Compilation target">
             <echo message = "Compiling the sources."/>
             <javac srcdir="."  />
           </target>
 
-      <!-- Javadoc aufrufen und die Dokumentation bauen -->
-      <target name="docs" depends="makedir" description="Building the documentation">
-        <echo message= "Building the documentation"/>
-        <javadoc  destdir="${doc.dir}" 
-              author="true" 
-                          use="false"
-              windowtitle="Javadoc">
-            <fileset dir="." defaultexcludes="yes" />       
-            <!-- Set variables for HTML -->
-            <doctitle><![CDATA[<h1>Javadoc mit ant</h1>]]></doctitle>
-        </javadoc>
-      </target> 
+          <!-- Javadoc aufrufen und die Dokumentation bauen -->
+          <target name="docs" depends="makedir" description="Building the documentation">
+            <echo message= "Building the Javadoc documentation"/>
+            <javadoc  destdir="${doc.dir}" 
+                      author="true" 
+                      use="false"
+                      windowtitle="Javadoc">
+              <fileset dir="." defaultexcludes="yes" />       
+              <!-- HTML-Titel setzen -->
+              <doctitle><![CDATA[<h1>Javadoc mit ant</h1>]]></doctitle>
+            </javadoc>
+          </target> 
 
           <target name="run" depends="compile"> 
             <echo message = "Ant running a Java main!"/>
             <java fork="true" classname="Main"/>
           </target>
 
-
           <target name="all" depends="compile, docs, run"> 
             <echo message = "compile the sources, build the documentation and run the application!"/>
           </target> 
     
-      <target name="clean">
+          <target name="clean">
             <echo message= "Cleaning up!" />
             <delete file="One.class" />
             <delete file="Two.class" />
             <delete file="Main.class" />
-      </target>
+          </target>
 </project>

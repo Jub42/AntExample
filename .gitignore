@@ -1,0 +1,21 @@
+# Backup-Files unserer ASCII-Editoren
+*~
+*.bak
+
+# class-files
+**/*.class
+
+# Verzeichnisse mit Binaries
+[Bb]in/
+
+# Log-Ausgaben
+logs/
+
+# HTML-Verzeichnis mit Dokumentation
+[Hh]tml/
+[Dd]oc
+
+# Eclipse Projektinfos
+.classpath
+.project
+.settings/

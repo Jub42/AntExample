@@ -1,11 +1,10 @@
 <?xml version="1.0" ?>
-<!--
-       Erstes Beispiel eines ant build files.
-       $Date: 2014/08/14 $
-       $Revision: #2 $
-  -->
 <project name="Simple" basedir="." default="all">
-
+          <!-- Warnung bei javac ausblenden -->
+          <!-- Quelle: -->
+          <!-- https://stackoverflow.com/questions/5103384/ant-warning-includeantruntime-was-not-set -->	
+          <property name="build.sysclasspath" value="last"/>
+	
           <target name="compile" description="Compilation target">
     	    <echo message = "Compiling the sources."/>
     	    <!-- call javac and store the class-files in the build directory -->
@@ -26,4 +25,4 @@
 	  	    <delete file="Two.class" />
 	  	    <delete file="Main.class" />
 	      </target>
-</project>
+</project>

@@ -45,6 +45,7 @@
             <delete file="One.class" />
             <delete file="Two.class" />
             <delete file="Main.class" />
+	    <delete dir="html" />
           	<delete file="doxygenOut.txt" />
           </target>
 </project>

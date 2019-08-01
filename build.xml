@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <project name="Simple with a jar" basedir="." default="all">
-          <!-- Warnung bei javac ausblenden -->
-          <!-- Quelle: -->
-          <!-- https://stackoverflow.com/questions/5103384/ant-warning-includeantruntime-was-not-set -->	
-          <property name="build.sysclasspath" value="last"/>
+             <!-- Warnung bei javac ausblenden -->
+             <!-- Quelle: -->
+             <!-- https://stackoverflow.com/questions/5103384/ant-warning-includeantruntime-was-not-set -->	
+             <property name="build.sysclasspath" value="last"/>
 	
 		     <!-- Das folgende Verzeichnis wird mit clean nicht gelöscht!
-	              Dort stehen die external jars und unsere Quellen ... -->
+	              Dort stehen die erstellten jars und unsere Quellen ... -->
 	         <property name="src.dir" location="${basedir}" />     
 		     <property name="dist.dir" location="dist" />
 	

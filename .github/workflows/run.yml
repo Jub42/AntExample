@@ -1,0 +1,13 @@
+  
+ name: Ausführen mit ant run
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build with Ant
+        run: ant -noinput -buildfile build.xml run

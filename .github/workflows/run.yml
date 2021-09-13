@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run with Ant
-        run: ant -noinput -buildfile build.xml run clean
+        run: ant -noinput -buildfile build.xml run

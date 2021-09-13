@@ -1,5 +1,4 @@
-  
- name: Ausführen mit ant run
+  name: Run
 
 on: [workflow_dispatch]
 
@@ -10,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Ant
-        run: ant -noinput -buildfile build.xml run
+      - run: ant -noinput -buildfile build.xml run

@@ -15,10 +15,10 @@ jobs:
       with:
         java-version: '11'
     - name: Create javadoc pages
-      run: ant -noinput docs
+      run: ant -noinput -buildfile build.xml docs
     - name: Deploy JavaDoc
       uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/doxygen' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./html

@@ -1,7 +1,6 @@
 public class One {
-	
-	@Override
+	@Override
     public String toString() {
     	return "One!";
-    }
+    }
 }

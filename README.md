@@ -1,7 +1,7 @@
 # AntExample
 Dieses GitHub-Repo ist eine Kopie des im Skript "Build-Verfahren" beschriebenen einfachen Java-Projekts, das eine Anwendungsklasse und zwei Klassen enthält. Dieses Beispiel verwenden wir als Demonstrationsobjekt für die Einführung in Ant und als Beispiel eines Jenkins-Projekts, das mit GitHub als SCM verbunden ist. 
 
-Das GitHub-Repo enthält drei Branches:
+Das GitHub-Repo enthält fünf Branches:
 - master
 - javadoc
 - doxygen
